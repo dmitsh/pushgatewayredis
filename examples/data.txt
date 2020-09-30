@@ -1,0 +1,16 @@
+# HELP cpu_percent_used CPU percent used.
+# TYPE cpu_percent_used gauge
+cpu_percent_used{host=":9091",module="redis",set="1"} 45
+cpu_percent_used{host=":9091",module="server",set="1"} 39
+# HELP http_requests_total Total number of HTTP requests.
+# TYPE http_requests_total counter
+http_requests_total{host=":9091",module="redis",path="/api",set="1",status_code="200"} 7
+http_requests_total{host=":9091",module="redis",path="/auth",set="1",status_code="200"} 6
+http_requests_total{host=":9091",module="redis",path="/auth",set="1",status_code="503"} 1
+http_requests_total{host=":9091",module="redis",path="/home",set="1",status_code="200"} 4
+http_requests_total{host=":9091",module="server",path="/api",set="1",status_code="200"} 6
+http_requests_total{host=":9091",module="server",path="/api",set="1",status_code="401"} 1
+http_requests_total{host=":9091",module="server",path="/auth",set="1",status_code="200"} 4
+http_requests_total{host=":9091",module="server",path="/auth",set="1",status_code="401"} 1
+http_requests_total{host=":9091",module="server",path="/home",set="1",status_code="200"} 5
+http_requests_total{host=":9091",module="server",path="/home",set="1",status_code="503"} 1

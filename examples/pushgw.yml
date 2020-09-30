@@ -1,0 +1,8 @@
+port: 9753
+metrics_path: /metrics
+ingest_path: /ingest
+tls_enabled: false
+redis:
+  endpoint: "localhost:6379"
+  expiration: 5m
+  db: 0
