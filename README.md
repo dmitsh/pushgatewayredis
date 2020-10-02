@@ -23,15 +23,14 @@ Flags:
   -h, --help                     Show context-sensitive help (also try --help-long and --help-man).
       --config.file=CONFIG.FILE  Prometheus configuration file path.
   -p, --port=9753                Service port.
+      --tls.enabled              Enable TLS.
+      --tls.key=TLS.KEY          Path to the server key.
+      --tls.cert=TLS.CERT        Path to the server certificate.
   -m, --metrics.path="/metrics"  Metrics path.
   -i, --ingest.path="/ingest"    Ingest path.
       --redis.endpoint=":6379"   Redis endpoint(s).
       --redis.expiration=5m      Redis key/value expiration.
-      --tls.enabled              Enable TLS.
-      --tls.key=TLS.KEY          Path to the server key.
-      --tls.cert=TLS.CERT        Path to the server certificate.
-      --log.level=info           Only log messages with the given severity or above. One of: [debug, info, warn,
-                                 error]
+      --log.level=info           Only log messages with the given severity or above. One of: [debug, info, warn, error]
       --log.format=logfmt        Output format of log messages. One of: [logfmt, json]
 ```
 For more detailed settings use [config file](./examples/pushgw.yml) defined with this [schema](./pkg/config/config.go)

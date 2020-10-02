@@ -30,13 +30,13 @@ func main() {
 	a.HelpFlag.Short('h')
 	a.Flag("config.file", "Prometheus configuration file path.").StringVar(&configFile)
 	a.Flag("port", "Service port.").Short('p').Default("9753").IntVar(&cfg.Port)
+	a.Flag("tls.enabled", "Enable TLS.").Default("false").BoolVar(&cfg.TLSEnabled)
+	a.Flag("tls.key", "Path to the server key.").StringVar(&cfg.TLSKeyPath)
+	a.Flag("tls.cert", "Path to the server certificate.").StringVar(&cfg.TLSCertPath)
 	a.Flag("metrics.path", "Metrics path.").Short('m').Default("/metrics").StringVar(&cfg.MetricsPath)
 	a.Flag("ingest.path", "Ingest path.").Short('i').Default("/ingest").StringVar(&cfg.IngestPath)
 	a.Flag("redis.endpoint", "Redis endpoint(s).").Default(":6379").StringVar(&cfg.RedisConfig.Endpoint)
 	a.Flag("redis.expiration", "Redis key/value expiration.").Default("5m").DurationVar(&cfg.RedisConfig.Expiration)
-	a.Flag("tls.enabled", "Enable TLS.").Default("false").BoolVar(&cfg.TLSEnabled)
-	a.Flag("tls.key", "Path to the server key.").StringVar(&cfg.TLSKeyPath)
-	a.Flag("tls.cert", "Path to the server certificate.").StringVar(&cfg.TLSCertPath)
 
 	logConfig := &promlog.Config{}
 	promlogflag.AddFlags(a, logConfig)
