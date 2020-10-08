@@ -12,16 +12,17 @@ import (
 
 // RedisConfig defines how a RedisCache should be constructed.
 type RedisConfig struct {
-	Endpoint    string        `yaml:"endpoint"`
-	MasterName  string        `yaml:"master_name"`
-	Timeout     time.Duration `yaml:"timeout"`
-	Expiration  time.Duration `yaml:"expiration"`
-	DB          int           `yaml:"db"`
-	PoolSize    int           `yaml:"pool_size"`
-	Password    string        `yaml:"password"`
-	EnableTLS   bool          `yaml:"enable_tls"`
-	IdleTimeout time.Duration `yaml:"idle_timeout"`
-	MaxConnAge  time.Duration `yaml:"max_connection_age"`
+	Endpoint      string        `yaml:"endpoint"`
+	MasterName    string        `yaml:"master_name"`
+	Timeout       time.Duration `yaml:"timeout"`
+	Expiration    time.Duration `yaml:"expiration"`
+	DB            int           `yaml:"db"`
+	PoolSize      int           `yaml:"pool_size"`
+	Password      string        `yaml:"password"`
+	TLSEnabled    bool          `yaml:"tls_enabled"`
+	TLSSkipVerify bool          `yaml:"tls_skip_verify"`
+	IdleTimeout   time.Duration `yaml:"idle_timeout"`
+	MaxConnAge    time.Duration `yaml:"max_connection_age"`
 }
 
 type RedisClient struct {
@@ -41,8 +42,8 @@ func NewRedisClient(cfg *RedisConfig) *RedisClient {
 		IdleTimeout: cfg.IdleTimeout,
 		MaxConnAge:  cfg.MaxConnAge,
 	}
-	if cfg.EnableTLS {
-		opt.TLSConfig = &tls.Config{}
+	if cfg.TLSEnabled {
+		opt.TLSConfig = &tls.Config{InsecureSkipVerify: cfg.TLSSkipVerify}
 	}
 	return &RedisClient{
 		expiration: cfg.Expiration,
