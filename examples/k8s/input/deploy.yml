@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: promsim
+  labels:
+    app: promsim
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: promsim
+  template:
+    metadata:
+      labels:
+        app: promsim
+    spec:
+      containers:
+      - name: promsim
+        image: docker.io/dmitsh/promsim:0.3
+        command: ["/bin/promsim"]
+        args: ["target", "-a", ":9102"]
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9102
+      - name: echo
+        image: curlimages/curl
+        command: ['sh', '-c', 'while : ; do curl -s localhost:9102/metrics | curl -s -X POST -H "Content-Type: text/plain" --data-binary @- pushgw.default.svc.cluster.local:9753/ingest; sleep 15; done']

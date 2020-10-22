@@ -1,3 +1,6 @@
+DOCKER_IMAGE_VER=0.1
+
+DOCKER_CONTAINER=pushgatewayredis:${DOCKER_IMAGE_VER}
 
 build:
 	CGO_ENABLED=0 go build -a -ldflags '-extldflags "-static"' ./cmd/pushgateway/
@@ -20,4 +23,10 @@ start-prom:
 stop-prom:
 	docker kill prom-srv; docker rm prom-srv
 
-.PHONY: build ingest metrics start-redis stop-redis start-prom stop-prom
+docker-build:
+	docker build -t ${DOCKER_CONTAINER} .
+
+docker-push:
+	docker tag ${DOCKER_CONTAINER} docker.io/dmitsh/${DOCKER_CONTAINER} && docker push docker.io/dmitsh/${DOCKER_CONTAINER}
+
+.PHONY: build ingest metrics start-redis stop-redis start-prom stop-prom docker-build docker-push
