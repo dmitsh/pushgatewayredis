@@ -9,12 +9,13 @@ import (
 )
 
 type Config struct {
-	Port        int    `yaml:"port"`
-	MetricsPath string `yaml:"metrics_path"`
-	IngestPath  string `yaml:"ingest_path"`
-	TLSEnabled  bool   `yaml:"tls_enabled"`
-	TLSKeyPath  string `yaml:"tls_key_path"`
-	TLSCertPath string `yaml:"tls_cert_path"`
+	Port          int    `yaml:"port"`
+	MetricsPath   string `yaml:"metrics_path"`
+	TelemetryPath string `yaml:"telemetry_path"`
+	IngestPath    string `yaml:"ingest_path"`
+	TLSEnabled    bool   `yaml:"tls_enabled"`
+	TLSKeyPath    string `yaml:"tls_key_path"`
+	TLSCertPath   string `yaml:"tls_cert_path"`
 
 	RedisConfig redis.RedisConfig `yaml:"redis"`
 }

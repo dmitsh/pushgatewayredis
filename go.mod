@@ -8,6 +8,7 @@ require (
 	github.com/kr/pretty v0.2.0 // indirect
 	github.com/oklog/run v1.0.0
 	github.com/pkg/errors v0.9.1
+	github.com/prometheus/client_golang v1.7.1
 	github.com/prometheus/common v0.14.0
 	golang.org/x/net v0.0.0-20200707034311-ab3426394381 // indirect
 	google.golang.org/protobuf v1.24.0 // indirect

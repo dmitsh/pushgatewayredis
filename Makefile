@@ -1,6 +1,6 @@
 
-build: pushgateway
-	go build ./cmd/pushgateway/
+build:
+	CGO_ENABLED=0 go build -a -ldflags '-extldflags "-static"' ./cmd/pushgateway/
 
 ingest:
 	curl -X POST -H "Content-Type: text/plain" --data-binary @./examples/data.txt localhost:9753/ingest
@@ -20,4 +20,4 @@ start-prom:
 stop-prom:
 	docker kill prom-srv; docker rm prom-srv
 
-.PHONY: ingest metrics start-redis stop-redis start-prom stop-prom
+.PHONY: build ingest metrics start-redis stop-redis start-prom stop-prom

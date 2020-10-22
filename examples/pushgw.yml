@@ -1,6 +1,7 @@
 port: 9753
 metrics_path: /metrics
 ingest_path: /ingest
+telemetry_path: /telemetry
 tls_enabled: false
 redis:
   endpoint: "localhost:6379"
